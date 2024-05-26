@@ -44,24 +44,29 @@
             wrapper.style.setProperty("--rows", rows);
         
             populateTiles(rows * columns, columns);
+
+            updateTileVisibility();
         };
 
         let lastScrollTop = 0;
         let iteration = 0;
         const scrollThreshold = 200; // Amount of pixels to scroll before updating visibility
 
-        const updateTileVisibility = () => {
+        async function updateTileVisibility() {
             if (document.querySelectorAll('.tile').length <= 0) {
                 return;
             }
 
-            const currentScrollTop = window.scrollY;
+            /* const currentScrollTop = window.scrollY;
             if (Math.abs(currentScrollTop - lastScrollTop) >= scrollThreshold) {
                 lastScrollTop = currentScrollTop; // Update last scroll position for next check
-                
-                const tiles = document.querySelectorAll('.tile');
-                const columns = parseInt(wrapper.style.getPropertyValue("--columns"));
-                const rows = parseInt(wrapper.style.getPropertyValue("--rows"));
+             */
+            const tiles = document.querySelectorAll('.tile');
+            const columns = parseInt(wrapper.style.getPropertyValue("--columns"));
+            const rows = parseInt(wrapper.style.getPropertyValue("--rows"));
+            while (!allTransparent)
+            {
+                await new Promise(r => setTimeout(r, 200));
                 allTransparent = true;
                 
                 let baseChance = chanceOfDisappearing + iteration * 0.1;
@@ -103,6 +108,7 @@
                     }, "500");
                 }
             }
+            //}
         };
 
         const resizeOnMobile = () => {
@@ -119,7 +125,6 @@
         document.addEventListener('touchend', resizeOnMobile);
 
         window.onresize = createGrid;
-        window.onscroll = updateTileVisibility;
 
         createGrid();
     });
