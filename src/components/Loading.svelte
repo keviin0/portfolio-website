@@ -40,14 +40,13 @@
         
             populateTiles(rows * columns, columns);
 
-            dispatch('loaded');
-
             setTimeout(updateTileVisibility, 1750);
         };
 
         
 
         async function updateTileVisibility() {
+            dispatch('loaded');
             if (document.querySelectorAll('.tile').length <= 0) {
                 return;
             }
@@ -114,7 +113,7 @@
 
     :global(.tile) {
         opacity: 1;
-        transition: border-radius 0.75s, opacity 1s ease, transform 0.2s ease;
+        transition: border-radius 0.7s, opacity 1s ease, transform 0.2s ease;
         z-index: 50;
     }
 

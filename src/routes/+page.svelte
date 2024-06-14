@@ -15,13 +15,10 @@
 
 </script>
 
-<div class="relative">
-    <div id="loading-component" class="fixed inset-0 z-50">
-        <Loading on:loaded={handleLoaded} on:finished={handleFinished}/>
-    </div>
-
-    {#if isLoaded}
-        <Hero />
-    {/if}
-    
+<div id="loading-component" class="fixed inset-0 z-50">
+    <Loading on:loaded={handleLoaded} on:finished={handleFinished}/>
 </div>
+
+{#if isLoaded}
+    <Hero />
+{/if}

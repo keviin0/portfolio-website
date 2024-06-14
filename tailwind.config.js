@@ -5,7 +5,13 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Inter', 'sans-serif'], // Ensures Inter is the first font in the sans-serif stack
+        'sans': ['Inter', 'sans-serif'], 
+      },
+      height: {
+        '80v': "80vh",
+      },
+      backgroundImage: {
+        'web-dev-ss': "url('/img/WebDev.png')",
       }
     },
   },
